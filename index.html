@@ -1,10 +1,3 @@
-<!-- บริเวณส่วนหัว -->
-<a href="https://forms.gle/JuJ2WWLeiRyTQSNU6"
-   target="_blank" rel="noopener"
-   class="ml-2 border rounded-2xl px-3 py-1.5 text-xs hover:bg-gray-50">
-  ส่งฟีดแบ็ก
-</a>
-
 <!doctype html>
 <html lang="th">
 <head>
@@ -15,23 +8,13 @@
   <style>.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}.line-clamp-3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}</style>
 </head>
 <body class="bg-gray-50 text-gray-900">
-  <!-- Header -->
   <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b">
     <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <span class="inline-flex w-5 h-5 items-center justify-center text-blue-600">📍</span>
-        <div class="font-bold">TripMate</div>
-      </div>
-      <div class="flex items-center gap-2">
-        <div id="locStatusEl" class="text-xs text-gray-500">กำลังตรวจจับตำแหน่ง...</div>
-        <button id="openFeedback" class="ml-2 border rounded-2xl px-3 py-1.5 text-xs">ส่งฟีดแบ็ก</button>
-      </div>
+      <div class="flex items-center gap-2"><span class="inline-flex w-5 h-5 items-center justify-center text-blue-600">📍</span><div class="font-bold">TripMate</div></div>
+      <div id="locStatusEl" class="text-xs text-gray-500">กำลังตรวจจับตำแหน่ง...</div>
     </div>
   </header>
-
-  <!-- Main -->
-  <main class="max-w-3xl mx-auto px-4 py-4 pb-28">
-    <!-- DISCOVER -->
+  <main class="max-w-3xl mx-auto px-4 py-4 pb-24">
     <section id="page-discover" class="space-y-4">
       <div class="flex items-center gap-2">
         <div class="relative flex-1">
@@ -49,8 +32,6 @@
       </div>
       <div id="discoverContent" class="grid grid-cols-1 gap-3"></div>
     </section>
-
-    <!-- SEARCH -->
     <section id="page-search" class="hidden space-y-3">
       <div class="flex items-center gap-2">
         <div class="relative flex-1">
@@ -66,11 +47,7 @@
       <div id="locInfo" class="text-xs text-gray-500"></div>
       <div id="searchResults" class="grid grid-cols-1 gap-3"></div>
     </section>
-
-    <!-- GROUPS -->
     <section id="page-groups" class="hidden space-y-4"><div id="groupContainer"></div></section>
-
-    <!-- REWARDS -->
     <section id="page-rewards" class="hidden space-y-4">
       <div class="bg-white border rounded-2xl p-4 flex items-center justify-between">
         <div><div class="text-lg font-semibold">แต้มสะสมของคุณ</div><div id="pointsEl" class="text-2xl font-bold text-blue-600">0 pts</div><div id="badgesEl" class="mt-1 text-sm text-gray-500">แบดจ์: -</div></div>
@@ -78,8 +55,6 @@
       </div>
       <div id="rewardsList" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
     </section>
-
-    <!-- PROFILE -->
     <section id="page-profile" class="hidden space-y-4">
       <div class="bg-white border rounded-2xl p-4 flex items-center justify-between">
         <div><div class="text-xl font-semibold"><span id="userNameEl">ผู้ใช้</span> <span id="userHandleEl" class="text-sm text-gray-500">@handle</span></div>
@@ -89,8 +64,6 @@
       <div><div class="font-semibold mb-2">รีวิวของฉัน</div><div id="myReviews" class="space-y-2"></div></div>
     </section>
   </main>
-
-  <!-- Bottom Nav -->
   <nav class="fixed bottom-0 inset-x-0 bg-white border-t z-40">
     <div class="max-w-3xl mx-auto grid grid-cols-5 text-sm">
       <button data-tab="discover" class="py-3 flex flex-col items-center text-blue-600">🏠<span class="text-xs">ค้นพบ</span></button>
@@ -100,94 +73,19 @@
       <button data-tab="profile" class="py-3 flex flex-col items-center text-gray-600">👤<span class="text-xs">โปรไฟล์</span></button>
     </div>
   </nav>
-
-  <!-- One-click Detail Modal -->
-  <div id="detailModal" class="hidden fixed inset-0 bg-black/50 z-50 p-4">
-    <div class="bg-white w-full max-w-2xl mx-auto mt-[10vh] rounded-2xl p-4">
-      <div class="flex items-center justify-between mb-2">
-        <div class="text-lg font-semibold">ข้อมูลเดียวจบ</div>
-        <button id="closeDetail" class="px-3 py-1.5 rounded-xl hover:bg-gray-100">✕</button>
-      </div>
-      <div id="detailContent" class="space-y-4"></div>
-    </div>
-  </div>
-
-  <!-- Create Post Modal -->
-  <div id="createModal" class="hidden fixed inset-0 bg-black/50 z-50 p-4">
-    <div class="bg-white w-full max-w-lg mx-auto mt-[10vh] rounded-2xl p-4">
-      <div class="flex items-center justify-between mb-2">
-        <div class="text-lg font-semibold">โพสต์รีวิว</div>
-        <button id="closeCreate" class="px-3 py-1.5 rounded-xl hover:bg-gray-100">✕</button>
-      </div>
-      <div class="space-y-3">
-        <div>
-          <label class="text-sm">สถานที่</label>
-          <select id="createPlace" class="w-full border rounded-md p-2 mt-1"></select>
-        </div>
-        <div>
-          <label class="text-sm">ให้คะแนน: <span id="createRateLabel">5</span> ดาว</label>
-          <input id="createRate" type="range" min="1" max="5" step="1" value="5" class="w-full accent-blue-600" />
-        </div>
-        <div>
-          <label class="text-sm">รีวิว</label>
-          <textarea id="createText" rows="4" class="w-full border rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500" placeholder="เล่าประสบการณ์สั้น ๆ ของคุณ"></textarea>
-        </div>
-        <div id="verifyHint" class="text-sm text-gray-500">* เปิดตำแหน่งใกล้สถานที่เพื่อรับสถานะ Verified</div>
-        <div class="flex items-center justify-end gap-2">
-          <button id="cancelCreate" class="border border-gray-300 rounded-2xl px-4 py-2">ยกเลิก</button>
-          <button id="submitCreate" class="bg-blue-600 hover:bg-blue-700 text-white rounded-2xl px-4 py-2">โพสต์</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Feedback Modal -->
-  <div id="fbModal" class="hidden fixed inset-0 bg-black/50 z-50 p-4">
-    <div class="bg-white w-full max-w-lg mx-auto mt-[10vh] rounded-2xl p-4">
-      <div class="flex items-center justify-between mb-2">
-        <div class="text-lg font-semibold">ส่งฟีดแบ็ก</div>
-        <button id="closeFb" class="px-3 py-1.5 rounded-xl hover:bg-gray-100">✕</button>
-      </div>
-      <div class="space-y-3">
-        <div>
-          <label class="text-sm">วันนี้คุณทำสิ่งที่ตั้งใจสำเร็จไหม?</label>
-          <div class="mt-1 grid grid-cols-2 gap-2">
-            <label class="border rounded-xl p-2 flex items-center gap-2"><input type="radio" name="fb_success" value="true" checked><span>สำเร็จ</span></label>
-            <label class="border rounded-xl p-2 flex items-center gap-2"><input type="radio" name="fb_success" value="false"><span>ไม่สำเร็จ</span></label>
-          </div>
-        </div>
-        <div>
-          <label class="text-sm">ให้คะแนนประสบการณ์รวม</label>
-          <input id="fb_rating" type="range" min="1" max="5" step="1" value="4" class="w-full accent-blue-600" />
-          <div class="text-xs text-gray-500">คะแนน: <span id="fb_rating_label">4</span>/5</div>
-        </div>
-        <div>
-          <label class="text-sm">อะไรที่ดี/ติดขัด? (อธิบายสั้น ๆ)</label>
-          <textarea id="fb_comment" rows="4" class="w-full border rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500" placeholder="ตัวอย่าง: หาเมนูสรุปทริปไม่เจอ, โหวตใช้งานง่าย ฯลฯ"></textarea>
-        </div>
-        <div class="text-sm">
-          <label class="inline-flex items-center gap-2"><input id="fb_consent" type="checkbox"> ยินยอมให้ติดต่อกลับ</label>
-        </div>
-        <div>
-          <label class="text-sm">ช่องทางติดต่อ (อีเมล/ไลน์ - ไม่บังคับ)</label>
-          <input id="fb_contact" class="w-full border rounded-xl px-3 py-2" placeholder="example@email.com" />
-        </div>
-        <div class="text-xs text-gray-500">ระบบจะบันทึกบริบทหน้าจอ, เวลา, และอุปกรณ์เพื่อใช้แก้บั๊ก</div>
-        <div class="flex items-center justify-end gap-2">
-          <button id="cancelFb" class="border rounded-2xl px-4 py-2">ยกเลิก</button>
-          <button id="submitFb" class="bg-blue-600 hover:bg-blue-700 text-white rounded-2xl px-4 py-2">ส่ง</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <div id="detailModal" class="hidden fixed inset-0 bg-black/50 z-50 p-4"><div class="bg-white w-full max-w-2xl mx-auto mt-[10vh] rounded-2xl p-4">
+    <div class="flex items-center justify-between mb-2"><div class="text-lg font-semibold">ข้อมูลเดียวจบ</div><button id="closeDetail" class="px-3 py-1.5 rounded-xl hover:bg-gray-100">✕</button></div>
+    <div id="detailContent" class="space-y-4"></div></div></div>
+  <div id="createModal" class="hidden fixed inset-0 bg-black/50 z-50 p-4"><div class="bg-white w-full max-w-lg mx-auto mt-[10vh] rounded-2xl p-4">
+    <div class="flex items-center justify-between mb-2"><div class="text-lg font-semibold">โพสต์รีวิว</div><button id="closeCreate" class="px-3 py-1.5 rounded-xl hover:bg-gray-100">✕</button></div>
+    <div class="space-y-3">
+      <div><label class="text-sm">สถานที่</label><select id="createPlace" class="w-full border rounded-md p-2 mt-1"></select></div>
+      <div><label class="text-sm">ให้คะแนน: <span id="createRateLabel">5</span> ดาว</label><input id="createRate" type="range" min="1" max="5" step="1" value="5" class="w-full accent-blue-600" /></div>
+      <div><label class="text-sm">รีวิว</label><textarea id="createText" rows="4" class="w-full border rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500" placeholder="เล่าประสบการณ์สั้น ๆ ของคุณ"></textarea></div>
+      <div id="verifyHint" class="text-sm text-gray-500">* เปิดตำแหน่งใกล้สถานที่เพื่อรับสถานะ Verified</div>
+      <div class="flex items-center justify-end gap-2"><button id="cancelCreate" class="border border-gray-300 rounded-2xl px-4 py-2">ยกเลิก</button><button id="submitCreate" class="bg-blue-600 hover:bg-blue-700 text-white rounded-2xl px-4 py-2">โพสต์</button></div>
+    </div></div></div>
   <script>
-    // ---- Optional endpoint (ถ้ามี) ----
-    // ถ้าอยากส่งเข้า Supabase / Form endpoint ให้ใส่ URL ไว้ที่นี่
-    const FEEDBACK_ENDPOINT = null; // ตัวอย่าง: "https://your-project.supabase.co/functions/v1/feedback"
-    const FEEDBACK_METHOD = "POST";
-
-    // ---------------------- Mock Data ----------------------
     const currentUser = { id:"u_me", name:"แทมมี่", handle:"@tammy", level:"Explorer", points:520, badges:["Verified Explorer"] };
     const places = [
       { id:"p_khaotao", name:"อ่างเก็บน้ำเขาเต่า", province:"ประจวบคีรีขันธ์", category:"ธรรมชาติ", lat:12.5032, lng:99.9886, openingHours:"06:00–18:30", tags:["วิวสวย","ถ่ายรูป","พระอาทิตย์ตก"], rating:4.8, crowd:"ปานกลาง", photos:["https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop"] },
@@ -207,14 +105,9 @@
       { id:"rw2", name:"คูปองเครื่องดื่มฟรี (Cafe Partner)", cost:500, desc:"ร้านที่ร่วมรายการ" },
       { id:"rw3", name:"กระเป๋าผ้า TripMate", cost:800, desc:"จัดส่งฟรี" },
     ];
-
-    // ---------------------- State ----------------------
     let TAB="discover", MODE="posts", QUERY="", CAT="ทั้งหมด", PROV="ทั้งหมด", MAX_KM=80;
     let user = JSON.parse(JSON.stringify(currentUser));
     let userLoc = null;
-    let lastDetailPlace = null;
-
-    // ---------------------- Utils ----------------------
     const $ = sel => document.querySelector(sel);
     const $$ = sel => Array.from(document.querySelectorAll(sel));
     const setHidden = (el,hidden)=> el.classList.toggle("hidden", hidden);
@@ -227,14 +120,12 @@
       if(userLoc){arr=arr.map(p=>({p,d:kmDist(userLoc.lat,userLoc.lng,p.lat,p.lng)})).filter(({d})=>d<=MAX_KM).sort((a,b)=>a.d-b.d).map(({p})=>p);}else{arr=arr.sort((a,b)=>b.rating-a.rating);}
       return arr;
     }
-    function openDetail(place){ lastDetailPlace = place; renderDetail(place); setHidden($("#detailModal"), false); }
+    function openDetail(place){ renderDetail(place); setHidden($("#detailModal"), false); }
     function closeDetail(){ setHidden($("#detailModal"), true); }
     function openCreate(){ populateCreatePlaces(); updateVerifyHint(); setHidden($("#createModal"), false); }
     function closeCreate(){ setHidden($("#createModal"), true); }
-
-    // ---------------------- Renders ----------------------
     function renderNav(){ $$(".grid [data-tab]").forEach(btn=>{btn.classList.toggle("text-blue-600",btn.dataset.tab===TAB);btn.classList.toggle("text-gray-600",btn.dataset.tab!==TAB)}); setHidden($("#page-discover"),TAB!=="discover"); setHidden($("#page-search"),TAB!=="search"); setHidden($("#page-groups"),TAB!=="groups"); setHidden($("#page-rewards"),TAB!=="rewards"); setHidden($("#page-profile"),TAB!=="profile"); }
-    function renderBanners(){ const banners=[{id:"bn1",title:"โปรพิเศษคาเฟ่ภาคเหนือ",subtitle:"ลด 10% ร้านพาร์ทเนอร์",tag:"#CafeWeek",color:"bg-blue-50",emoji:"☕"},{id:"bn2",title:"ที่เที่ยวธรรมชาติยอดนิยม",subtitle:"พิกัดถ่ายรูปสวย",tag:"#NatureNow",color:"bg-green-50",emoji:"🌿"},{id:"bn3",title:"#เมืองรองกำลังมา",subtitle:"รวมจุดเช็คอินใหม่",tag:"#HiddenGems",color:"📍",emoji:"📍"}]; $("#promoBanners").innerHTML=banners.map(b=>`<div class="min-w-[260px] ${b.color} border rounded-2xl p-4"><div class="flex items-start justify-between"><div><div class="text-sm text-gray-600">📣 แนะนำ</div><div class="font-semibold leading-tight">${b.title}</div><div class="text-xs text-gray-500">${b.subtitle}</div></div><div class="text-xl">${b.emoji}</div></div><div class="mt-2"><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs border">${b.tag}</span></div></div>`).join(""); }
+    function renderBanners(){ const banners=[{id:"bn1",title:"โปรพิเศษคาเฟ่ภาคเหนือ",subtitle:"ลด 10% ร้านพาร์ทเนอร์",tag:"#CafeWeek",color:"bg-blue-50",emoji:"☕"},{id:"bn2",title:"ที่เที่ยวธรรมชาติยอดนิยม",subtitle:"พิกัดถ่ายรูปสวย",tag:"#NatureNow",color:"bg-green-50",emoji:"🌿"},{id:"bn3",title:"#เมืองรองกำลังมา",subtitle:"รวมจุดเช็คอินใหม่",tag:"#HiddenGems",color:"bg-amber-50",emoji:"📍"}]; $("#promoBanners").innerHTML=banners.map(b=>`<div class="min-w-[260px] ${b.color} border rounded-2xl p-4"><div class="flex items-start justify-between"><div><div class="text-sm text-gray-600">📣 แนะนำ</div><div class="font-semibold leading-tight">${b.title}</div><div class="text-xs text-gray-500">${b.subtitle}</div></div><div class="text-xl">${b.emoji}</div></div><div class="mt-2"><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs border">${b.tag}</span></div></div>`).join(""); }
     function renderTopTags(){ const tags=["#คาเฟ่วิวดี","#ธรรมชาติ","#ครอบครัว","#ถ่ายรูป","#เมืองรอง","#ทะเล","#ภูเขา"]; $("#topTags").innerHTML=tags.map(t=>`<span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs border whitespace-nowrap">${t}</span>`).join(""); }
     function renderDiscover(){
       const container=$("#discoverContent");
@@ -247,86 +138,16 @@
       }
     }
     function renderSearchChips(){ const cats=["ทั้งหมด","คาเฟ่","ธรรมชาติ","ที่พัก","ร้านอาหาร","แลนด์มาร์ก"]; $("#categoryChips").innerHTML=cats.map(c=>`<button class="px-3 py-1.5 rounded-2xl text-sm ${CAT===c?"bg-blue-600 text-white":"border"}" data-cat="${c}">${c}</button>`).join(""); const provs=["ทั้งหมด",...Array.from(new Set(places.map(p=>p.province)))]; $("#provinceChips").innerHTML=provs.map(p=>`<button class="px-3 py-1.5 rounded-2xl text-sm ${PROV===p?"bg-blue-600 text-white":"border"}" data-prov="${p}">${p}</button>`).join(""); }
-    function renderSearchResults(){ const arr=filteredPlaces(); const map=latestByPlace(); $("#searchResults").innerHTML=arr.length?arr.map(p=>{const r=map[p.id]; const dist=userLoc?fmtKm(kmDist(userLoc.lat,userLoc.lng,p.lat,p.lng)):null; return `<div class="bg-white border rounded-2xl p-4 space-y-2"><div class="flex items-center justify-between"><div><div class="text-lg font-semibold">${p.name}</div><div class="text-sm text-gray-500">${p.province} · ${p.category}</div></div><div class="flex items-center gap-2"><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs bg-blue-600 text-white">⭐ ${p.rating.toFixed(1)}</span><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs bg-gray-100">Crowd: ${p.crowd}</span>${dist?`<span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs border">📍 ${dist}</span>`:""}</div></div>${r?`<div class="bg-gray-50 rounded-xl p-3"><div class="text-sm text-gray-700">“${clip(r.text,140)}”</div><div class="mt-1 flex items-center gap-2"><span class="text-xs text-gray-500">— ${r.user} · ${r.userLevel||""}</span>${r.verifiedVisit?`<span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] bg-gray-100">✔︎ Verified Visitor</span>`:""}</div></div>`:""}<div class="flex flex-wrap gap-2">${p.tags.map(t=>`<span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs border">#${t}</span>`).join("")}</div><div class="flex items-center justify-between pt-1"><div class="text-xs text-gray-500">เวลาทำการ: ${p.openingHours}</div><div class="flex items-center gap-2"><button class="border rounded-2xl px-3 py-1.5 text-sm" data-act="detail" data-id="${p.id}">ดูรายละเอียด</button><button class="rounded-2xl px-3 py-1.5 text-sm bg-blue-600 text-white" data-act="share" data-text="TripMate · ${p.name} · ${p.province}">แชร์</button></div></div></div>`;}).join(""):`<p class="text-sm text-gray-500">ยังไม่มีผลลัพธ์</p>`; }
-
-    function renderGroups(){ const container=$("#groupContainer"); const existing=container.getAttribute("data-group")==="1"; if(!existing){ container.innerHTML=`<div class="bg-white border rounded-2xl p-4"><div class="flex items-center justify-between mb-2"><div class="text-lg font-semibold">สร้างกลุ่มไปเที่ยว</div><button id="createGroupBtn" class="bg-blue-600 hover:bg-blue-700 text-white rounded-2xl px-3 py-1.5">+ สร้างกลุ่มใหม่</button></div><p class="text-sm text-gray-600">เพิ่มเพื่อน เสนอที่เที่ยว แล้วโหวต จากนั้นกด "สรุปทริป"</p></div><div id="groupArea" class="mt-3"></div>`; container.setAttribute("data-group","1"); $("#createGroupBtn").onclick=()=>{ const g={id:"g_"+Date.now(), name:"ทริปเชียงใหม่ปีใหม่ 2025", members:["แทมมี่","นนท์","พีท","ชิว"], date:"2025-12-30", province:"เชียงใหม่", proposals:["p_monjam","p_somewhere_cnx","p_doisuthep"], votes:{}, confirmedPlaceIds:null}; container.dataset.gdata=JSON.stringify(g); drawGroup(g); }; } else if(container.dataset.gdata){ drawGroup(JSON.parse(container.dataset.gdata)); } }
-    function drawGroup(g){ const area=$("#groupArea"); area.innerHTML=`<div class="bg-white border rounded-2xl p-4 flex items-center justify-between"><div><div class="text-lg font-semibold">${g.name}</div><div class="text-sm text-gray-500">สมาชิก: ${g.members.join(", ")}</div></div><button class="border rounded-2xl px-3 py-1.5" onclick="navigator.clipboard.writeText('เข้าร่วมกลุ่ม: ${g.name}')">แชร์</button></div><div class="bg-white border rounded-2xl p-4 mt-3"><div class="font-semibold mb-2">รายการโหวต</div>${g.proposals.map(pid=>{const p=places.find(x=>x.id===pid); const counts=Object.values(g.votes).filter(v=>v===pid).length; const voted=g.votes[currentUser.name]===pid; return `<div class="flex items-center justify-between border rounded-xl p-3 mb-2 ${voted?'border-blue-500':''}"><div><div class="font-medium">${p.name}</div><div class="text-xs text-gray-500">${p.province} · ⭐ ${p.rating.toFixed(1)}</div></div><div class="flex items-center gap-3"><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs bg-gray-100">โหวต: ${counts}</span><button class="px-3 py-1.5 rounded-2xl ${voted?'bg-blue-600 text-white':'border'}" data-vote="${pid}">${voted?'โหวตแล้ว':'โหวต'}</button></div></div>`}).join("")}<div class="flex items-center justify-between pt-2"><div class="text-sm text-gray-500">กดสรุปเพื่อสร้าง Trip Plan</div><button id="confirmTripBtn" class="bg-blue-600 hover:bg-blue-700 text-white rounded-2xl px-3 py-1.5">🗺️ สรุปทริป</button></div></div><div id="tripSummary"></div>`; area.querySelectorAll("[data-vote]").forEach(btn=>{btn.addEventListener("click",()=>{g.votes[currentUser.name]=btn.getAttribute("data-vote"); document.querySelector("#groupContainer").dataset.gdata=JSON.stringify(g); drawGroup(g);});}); $("#confirmTripBtn").onclick=()=>{const counts={}; g.proposals.forEach(pid=>counts[pid]=0); Object.values(g.votes).forEach(pid=>counts[pid]=(counts[pid]||0)+1); const top=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([pid])=>pid); g.confirmedPlaceIds=top; document.querySelector("#groupContainer").dataset.gdata=JSON.stringify(g); drawTripSummary(top); alert("สรุปทริปแล้ว: รวมข้อมูลแบบคลิกเดียว");}; }
+    function renderSearchResults(){ const arr=filteredPlaces(); const map=latestByPlace(); $("#searchResults").innerHTML=arr.length?arr.map(p=>{const r=map[p.id]; const dist=userLoc?fmtKm(kmDist(userLoc.lat,userLoc.lng,p.lat,p.lng)):null; return `<div class="bg-white border rounded-2xl p-4 space-y-2"><div class="flex items-center justify-between"><div><div class="text-lg font-semibold">${p.name}</div><div class="text-sm text-gray-500">${p.province} · ${p.category}</div></div><div class="flex items-center gap-2"><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs bg-blue-600 text-white">⭐ ${p.rating.toFixed(1)}</span><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs bg-gray-100">Crowd: ${p.crowd}</span>${dist?`<span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs border">📍 ${dist}</span>`:""}</div></div>${r?`<div class="bg-gray-50 rounded-xl p-3"><div class="text-sm text-gray-700">“${clip(r.text,140)}”</div><div class="mt-1 flex items-center gap-2"><span class="text-xs text-gray-500">— ${r.user} · ${r.userLevel||""}</span>${r.verifiedVisit?`<span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] bg-gray-100">✔︎ Verified Visitor</span>`:""}</div></div>`:""}<div class="flex flex-wrap gap-2">${p.tags.map(t=>`<span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs border">#${t}</span>`).join("")}</div><div class="flex items-center justify-between pt-1"><div class="text-xs text-gray-500">เวลาทำการ: ${p.openingHours}</div><div class="flex items-center gap-2"><button class="border rounded-2xl px-3 py-1.5 text-sm" data-act="detail" data-id="${p.id}">ดูรายละเอียด</button><button class="rounded-2xl px-3 py-1.5 text-sm bg-blue-600 text-white" data-act="share" data-text="TripMate · ${p.name} · ${p.province}">แชร์</button></div></div></div>`;}).join(""):`<p class="text-sm text-gray-500">ไม่พบผลลัพธ์ตามตัวกรอง</p>`; }
+    function renderGroups(){ const container=$("#groupContainer"); const existing=container.getAttribute("data-group")==="1"; if(!existing){ container.innerHTML=`<div class="bg-white border rounded-2xl p-4"><div class="flex items-center justify-between mb-2"><div class="text-lg font-semibold">สร้างกลุ่มไปเที่ยว</div><button id="createGroupBtn" class="bg-blue-600 hover:bg-blue-700 text-white rounded-2xl px-3 py-1.5">+ สร้างกลุ่มใหม่</button></div><p class="text-sm text-gray-600">เพิ่มเพื่อน เสนอที่เที่ยว แล้วโหวตเลือก จากนั้นกด "สรุปทริป" เพื่อสร้างแผนแบบคลิกเดียว</p></div><div id="groupArea" class="mt-3"></div>`; container.setAttribute("data-group","1"); $("#createGroupBtn").onclick=()=>{ const g={id:"g_"+Date.now(), name:"ทริปเชียงใหม่ปีใหม่ 2025", members:["แทมมี่","นนท์","พีท","ชิว"], date:"2025-12-30", province:"เชียงใหม่", proposals:["p_monjam","p_somewhere_cnx","p_doisuthep"], votes:{}, confirmedPlaceIds:null}; container.dataset.gdata=JSON.stringify(g); drawGroup(g); }; } else if(container.dataset.gdata){ drawGroup(JSON.parse(container.dataset.gdata)); } }
+    function drawGroup(g){ const area=$("#groupArea"); area.innerHTML=`<div class="bg-white border rounded-2xl p-4 flex items-center justify-between"><div><div class="text-lg font-semibold">${g.name}</div><div class="text-sm text-gray-500">สมาชิก: ${g.members.join(", ")}</div></div><button class="border rounded-2xl px-3 py-1.5" onclick="navigator.clipboard.writeText('เข้าร่วมกลุ่ม: ${g.name}')">แชร์</button></div><div class="bg-white border rounded-2xl p-4 mt-3"><div class="font-semibold mb-2">รายการโหวต</div>${g.proposals.map(pid=>{const p=places.find(x=>x.id===pid); const counts=Object.values(g.votes).filter(v=>v===pid).length; const voted=g.votes[currentUser.name]===pid; return `<div class="flex items-center justify-between border rounded-xl p-3 mb-2 ${voted?'border-blue-500':''}"><div><div class="font-medium">${p.name}</div><div class="text-xs text-gray-500">${p.province} · ⭐ ${p.rating.toFixed(1)}</div></div><div class="flex items-center gap-3"><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs bg-gray-100">โหวต: ${counts}</span><button class="px-3 py-1.5 rounded-2xl ${voted?'bg-blue-600 text-white':'border'}" data-vote="${pid}">${voted?'โหวตแล้ว':'โหวต'}</button></div></div>`}).join("")}<div class="flex items-center justify-between pt-2"><div class="text-sm text-gray-500">กดสรุปเพื่อสร้าง Trip Plan (One-click)</div><button id="confirmTripBtn" class="bg-blue-600 hover:bg-blue-700 text-white rounded-2xl px-3 py-1.5">🗺️ สรุปทริป</button></div></div><div id="tripSummary"></div>`; area.querySelectorAll("[data-vote]").forEach(btn=>{btn.addEventListener("click",()=>{g.votes[currentUser.name]=btn.getAttribute("data-vote"); document.querySelector("#groupContainer").dataset.gdata=JSON.stringify(g); drawGroup(g);});}); $("#confirmTripBtn").onclick=()=>{const counts={}; g.proposals.forEach(pid=>counts[pid]=0); Object.values(g.votes).forEach(pid=>counts[pid]=(counts[pid]||0)+1); const top=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([pid])=>pid); g.confirmedPlaceIds=top; document.querySelector("#groupContainer").dataset.gdata=JSON.stringify(g); drawTripSummary(top); alert("สรุปทริปแล้ว: รวมข้อมูลแบบคลิกเดียว");}; }
     function drawTripSummary(ids){ const cont=$("#tripSummary"); cont.innerHTML=`<div class="bg-white border rounded-2xl p-4 mt-3"><div class="font-semibold mb-2">สรุปทริป (One-click Plan)</div>${ids.map(pid=>{const p=places.find(x=>x.id===pid); const map=latestByPlace(); const r=map[pid]; return `<div class="border rounded-2xl p-3 mb-2"><div class="flex items-center justify-between"><div><div class="font-medium">${p.name}</div><div class="text-xs text-gray-500">${p.province} · ${p.category}</div></div><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs bg-blue-600 text-white">⭐ ${p.rating.toFixed(1)}</span></div>${r?`<div class="text-sm text-gray-600 mt-1">“${clip(r.text,120)}” — ${r.user}</div>`:""}<div class="mt-2"><button class="border rounded-2xl px-3 py-1.5 text-sm" data-act="detail" data-id="${p.id}">ดูรายละเอียด</button></div></div>`}).join("")}<div class="flex items-center justify-end"><button class="border rounded-2xl px-3 py-1.5" onclick="navigator.clipboard.writeText('Trip Plan พร้อมแชร์')">แชร์แผน</button></div></div>`; }
-
     function renderRewards(){ $("#pointsEl").textContent=user.points+" pts"; $("#badgesEl").textContent="แบดจ์: "+(user.badges.join(", ")||"-"); $("#rewardsList").innerHTML=rewardsCatalog.map(rw=>`<div class="bg-white border rounded-2xl p-4 flex items-center justify-between"><div><div class="font-semibold">${rw.name}</div><div class="text-sm text-gray-500">${rw.desc}</div></div><div class="flex items-center gap-3"><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs bg-gray-100">${rw.cost} pts</span><button class="bg-blue-600 hover:bg-blue-700 text-white rounded-2xl px-3 py-1.5" data-redeem="${rw.id}">แลก</button></div></div>`).join(""); $("#rewardsList").querySelectorAll("[data-redeem]").forEach(btn=>{btn.addEventListener("click",()=>{const rw=rewardsCatalog.find(r=>r.id===btn.getAttribute("data-redeem")); if(user.points<rw.cost){alert("แต้มไม่พอแลก");return;} user.points-=rw.cost; renderRewards(); renderProfileHeader(); alert(`แลก "${rw.name}" สำเร็จ (mock)`);});}); }
     function renderProfileHeader(){ $("#userNameEl").textContent=user.name; $("#userHandleEl").textContent=user.handle; $("#userMetaEl").textContent=`ระดับ: ${user.level} · แต้ม: ${user.points} · แบดจ์: ${user.badges.join(", ")||"-"}`; const my=reviews.filter(r=>r.user===user.name); $("#myReviews").innerHTML=my.length?my.map(r=>{const p=places.find(x=>x.id===r.placeId); return `<div class="bg-white border rounded-2xl p-3"><div class="flex items-center justify-between"><div class="font-medium">${p.name}</div><div class="text-amber-600">⭐ ${r.rating}</div></div><p class="text-sm mt-1">${r.text}</p>${r.verifiedVisit?`<div class="mt-2"><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs bg-gray-100">✔︎ Verified Visitor</span></div>`:""}</div>`;}).join(""):`<p class="text-sm text-gray-500">ยังไม่มีรีวิว</p>`; }
-
     function renderDetail(place){ const placeReviews=reviews.filter(r=>r.placeId===place.id).sort((a,b)=>a.date<b.date?1:-1); const autoNearby=places.filter(p=>p.id!==place.id).map(p=>({p,d:kmDist(place.lat,place.lng,p.lat,p.lng)})).filter(({d})=>d<=10).sort((a,b)=>a.d-b.d).map(({p})=>p); $("#detailContent").innerHTML=`<header class="space-y-1"><div class="text-xl font-semibold">${place.name}</div><div class="text-sm text-gray-500">${place.province} · ${place.category}</div><div class="flex items-center gap-2 mt-1"><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs bg-blue-600 text-white">⭐ ${place.rating.toFixed(1)}</span><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs bg-gray-100">Crowd: ${place.crowd}</span><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs border">เวลาทำการ: ${place.openingHours}</span></div></header><section><div class="font-semibold mb-2">รีวิวทั้งหมด</div><div class="space-y-2">${placeReviews.length?placeReviews.map(r=>`<div class="border rounded-xl p-3"><div class="flex items-center justify-between"><div class="font-medium">${r.user} <span class="text-xs text-gray-500">· ${r.userLevel||""}</span></div><div class="text-amber-600">⭐ ${r.rating}</div></div><p class="text-sm mt-1">${r.text}</p>${r.verifiedVisit?`<div class="mt-2"><span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs bg-gray-100">✔︎ Verified Visitor</span></div>`:""}</div>`).join(""):`<p class="text-sm text-gray-500">ยังไม่มีรีวิว</p>`}</div></section><section><div class="font-semibold mb-2">สถานที่ใกล้เคียง (≤10 กม.)</div><div class="grid grid-cols-1 sm:grid-cols-2 gap-3">${autoNearby.length?autoNearby.map(np=>`<div class="border rounded-xl p-3 flex items-center justify-between"><div><div class="font-medium">${np.name}</div><div class="text-xs text-gray-500">${np.category} · ⭐ ${np.rating.toFixed(1)}</div></div><button class="px-3 py-1.5 rounded-2xl border" data-act="detail" data-id="${np.id}">ดู</button></div>`).join(""):`<p class="text-sm text-gray-500">ยังไม่มีสถานที่ในรัศมีนี้</p>`}</div></section><div class="flex items-center justify-end gap-2"><button class="px-3 py-1.5 rounded-2xl border" onclick="navigator.clipboard.writeText('Trip: ${place.name}')">แชร์</button></div>`; }
-
     function populateCreatePlaces(){ $("#createPlace").innerHTML=places.map(p=>`<option value="${p.id}">${p.name} · ${p.province}</option>`).join(""); }
     function updateVerifyHint(){ const pid=$("#createPlace").value||places[0].id; const p=places.find(x=>x.id===pid); const verified=userLoc?kmDist(userLoc.lat,userLoc.lng,p.lat,p.lng)<=1:false; $("#verifyHint").innerHTML=verified?`<span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs bg-gray-100">✔︎ Verified Visitor (GPS)</span>`:`* เปิดตำแหน่งใกล้สถานที่เพื่อรับสถานะ Verified`; }
-
-    // ---------------------- Feedback logic ----------------------
-    function openFb(){ $("#fb_rating_label").textContent = $("#fb_rating").value; setHidden($("#fbModal"), false); }
-    function closeFb(){ setHidden($("#fbModal"), true); }
-
-    $("#fb_rating").addEventListener("input", (e)=> $("#fb_rating_label").textContent = e.target.value );
-
-    async function submitFeedback(){
-      const success = document.querySelector('input[name="fb_success"]:checked')?.value === "true";
-      const rating = Number($("#fb_rating").value);
-      const comment = $("#fb_comment").value || "";
-      const consent = $("#fb_consent").checked;
-      const contact = $("#fb_contact").value || null;
-
-      const context = {
-        tab: TAB,
-        place: lastDetailPlace ? { id: lastDetailPlace.id, name: lastDetailPlace.name, province: lastDetailPlace.province } : null
-      };
-
-      const payload = {
-        created_at: new Date().toISOString(),
-        rating_overall: rating,
-        task_success: success,
-        comment,
-        consent_contact: consent,
-        contact,
-        context,
-        device: navigator.platform || null,
-        browser: navigator.userAgent
-      };
-
-      // Save to localStorage (append)
-      const key = "tripmate_feedbacks";
-      const existing = JSON.parse(localStorage.getItem(key) || "[]");
-      existing.push(payload);
-      localStorage.setItem(key, JSON.stringify(existing));
-
-      // Optional POST
-      if (FEEDBACK_ENDPOINT){
-        try {
-          await fetch(FEEDBACK_ENDPOINT, {
-            method: FEEDBACK_METHOD || "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-          });
-        } catch (e) {
-          console.warn("Feedback POST failed:", e);
-        }
-      }
-
-      // Download JSON file as fallback
-      const blob = new Blob([JSON.stringify(payload, null, 2)], {type: "application/json"});
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = `feedback-${Date.now()}.json`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-
-      alert("ขอบคุณสำหรับฟีดแบ็ก!");
-      closeFb();
-    }
-
-    // ---------------------- Events ----------------------
-    $$(".grid [data-tab]").forEach(btn=>{
-      btn.onclick=()=>{ TAB=btn.dataset.tab; renderNav(); if(TAB==="discover"){renderDiscover()} if(TAB==="search"){renderSearchResults()} if(TAB==="groups"){renderGroups()} if(TAB==="rewards"){renderRewards()} if(TAB==="profile"){renderProfileHeader()} };
-    });
+    $$(".grid [data-tab]").forEach(btn=>{btn.onclick=()=>{ TAB=btn.dataset.tab; renderNav(); if(TAB==="discover"){renderDiscover()} if(TAB==="search"){renderSearchResults()} if(TAB==="groups"){renderGroups()} if(TAB==="rewards"){renderRewards()} if(TAB==="profile"){renderProfileHeader()} };});
     $("#discoverSearchInput").addEventListener("focus", ()=>{ TAB="search"; renderNav(); });
     $("#modePostsBtn").onclick=()=>{ MODE="posts"; $("#modePostsBtn").className="bg-blue-600 text-white rounded-2xl px-3 py-1.5 text-sm"; $("#modeTilesBtn").className="border rounded-2xl px-3 py-1.5 text-sm"; renderDiscover(); };
     $("#modeTilesBtn").onclick=()=>{ MODE="tiles"; $("#modeTilesBtn").className="bg-blue-600 text-white rounded-2xl px-3 py-1.5 text-sm"; $("#modePostsBtn").className="border rounded-2xl px-3 py-1.5 text-sm"; renderDiscover(); };
@@ -338,27 +159,7 @@
     $("#categoryChips").addEventListener("click",(e)=>{ const b=e.target.closest("[data-cat]"); if(!b) return; CAT=b.getAttribute("data-cat"); renderSearchChips(); renderSearchResults(); });
     $("#provinceChips").addEventListener("click",(e)=>{ const b=e.target.closest("[data-prov]"); if(!b) return; PROV=b.getAttribute("data-prov"); renderSearchChips(); renderSearchResults(); });
     $("#openCreatePost").onclick=openCreate; $("#closeCreate").onclick=closeCreate; $("#cancelCreate").onclick=closeCreate; $("#createPlace").addEventListener("change", updateVerifyHint); $("#createRate").addEventListener("input",(e)=>$("#createRateLabel").textContent=e.target.value); $("#submitCreate").onclick=()=>{ const placeId=$("#createPlace").value; const rating=Number($("#createRate").value); const text=$("#createText").value||"ประสบการณ์ดีมาก แนะนำครับ/ค่ะ"; const p=places.find(x=>x.id===placeId); const verified=userLoc?kmDist(userLoc.lat,userLoc.lng,p.lat,p.lng)<=1:false; const newReview={id:"r_"+Date.now(), placeId, user:user.name, userLevel:user.level, rating, text, verifiedVisit:verified, date:new Date().toISOString().slice(0,10), likes:0}; reviews=[newReview,...reviews]; user.points+=10+(verified?5:0); if(verified && !user.badges.includes("Verified Explorer")) user.badges.push("Verified Explorer"); alert(`โพสต์รีวิวสำเร็จ! ได้แต้ม ${10+(verified?5:0)}`); renderDiscover(); renderRewards(); renderProfileHeader(); closeCreate(); };
-
-    // Feedback bindings
-    $("#openFeedback").onclick = openFb;
-    $("#closeFb").onclick = closeFb;
-    $("#cancelFb").onclick = closeFb;
-    $("#submitFb").onclick = submitFeedback;
-
-    // ---------------------- Init ----------------------
-    function renderSearchInit(){ renderSearchChips(); renderSearchResults(); }
-    function init(){
-      renderNav(); renderBanners(); renderTopTags(); renderDiscover(); renderSearchInit(); renderGroups(); renderRewards(); renderProfileHeader();
-      if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition((pos)=>{
-          userLoc={lat:pos.coords.latitude,lng:pos.coords.longitude};
-          $("#locStatusEl").textContent="ใช้งานตำแหน่งใกล้คุณ"; $("#locInfo").textContent="ใช้งานตำแหน่งใกล้คุณ";
-          renderDiscover(); renderSearchResults(); updateVerifyHint();
-        }, ()=>{ $("#locStatusEl").textContent="โหมดไม่มีตำแหน่ง"; $("#locInfo").textContent="ไม่สามารถใช้ตำแหน่งได้ จะแสดงผลตามคะแนนนิยมแทน"; }, {enableHighAccuracy:true, timeout:7000});
-      } else {
-        $("#locStatusEl").textContent="โหมดไม่มีตำแหน่ง";
-      }
-    }
+    function init(){ renderNav(); renderBanners(); renderTopTags(); renderDiscover(); renderSearchChips(); renderSearchResults(); renderGroups(); renderRewards(); renderProfileHeader(); if(navigator.geolocation){ navigator.geolocation.getCurrentPosition((pos)=>{ userLoc={lat:pos.coords.latitude,lng:pos.coords.longitude}; $("#locStatusEl").textContent="ใช้งานตำแหน่งใกล้คุณ"; $("#locInfo").textContent="ใช้งานตำแหน่งใกล้คุณ"; renderDiscover(); renderSearchResults(); updateVerifyHint(); }, ()=>{ $("#locStatusEl").textContent="โหมดไม่มีตำแหน่ง"; $("#locInfo").textContent="ไม่สามารถใช้ตำแหน่งได้ จะแสดงผลตามคะแนนนิยมแทน"; }, {enableHighAccuracy:true, timeout:7000}); } else { $("#locStatusEl").textContent="โหมดไม่มีตำแหน่ง"; } }
     init();
   </script>
 </body>
