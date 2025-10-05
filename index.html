@@ -1,24 +1,31 @@
-<!-- บริเวณส่วนหัว -->
-<a href="https://forms.gle/JuJ2WWLeiRyTQSNU6"
-   target="_blank" rel="noopener"
-   class="ml-2 border rounded-2xl px-3 py-1.5 text-xs hover:bg-gray-50">
-  ส่งฟีดแบ็ก
-</a>
-
 <!doctype html>
 <html lang="th">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TripMate — Prototype (Single File)</title>
+  <title>TripMate — Prototype (Feedback)</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}.line-clamp-3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}</style>
+  <style>
+    .no-scrollbar::-webkit-scrollbar{display:none}
+    .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+    .line-clamp-3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
+
+  <!-- Header -->
   <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b">
-    <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-2"><span class="inline-flex w-5 h-5 items-center justify-center text-blue-600">📍</span><div class="font-bold">TripMate</div></div>
-      <div id="locStatusEl" class="text-xs text-gray-500">กำลังตรวจจับตำแหน่ง...</div>
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex w-5 h-5 items-center justify-center text-blue-600">📍</span>
+        <div class="font-bold text-lg">TripMate</div>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="https://forms.gle/JuJ2WWLeiRyTQSNU6" target="_blank" rel="noopener"
+           class="border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition rounded-2xl px-4 py-1.5 text-sm">
+           ส่งฟีดแบ็ก
+        </a>
+      </div>
     </div>
   </header>
   <main class="max-w-3xl mx-auto px-4 py-4 pb-24">
