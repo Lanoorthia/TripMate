@@ -10,24 +10,6 @@
     .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
     .line-clamp-3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
     
-    .masonry{ column-count: 1; column-gap: 1rem; }
-    @media (min-width: 768px){ .masonry{ column-count: 2; } }
-    @media (min-width: 1024px){ .masonry{ column-count: 3; } }
-    .masonry-item{ break-inside: avoid; }
-
-    .chip{ display:inline-flex; align-items:center; gap:.35rem; font-size:.875rem; padding:.25rem .6rem;
-           border-radius:999px; border:1px solid rgba(148,163,184,.35); background:rgba(148,163,184,.12); }
-    .chip:hover{ filter:brightness(1.05); }
-    .ratio-4-5{ position:relative; padding-bottom:125%; }
-    .ratio-4-5 > *{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:.75rem; }
-    .btn{ border:1px solid #2563eb; color:#2563eb; padding:.5rem .9rem; border-radius:999px; }
-    .btn:hover{ background:#2563eb; color:#fff; }
-    .btn-solid{ background:#2563eb; color:#fff; border:0; }
-    .btn-solid:hover{ filter:brightness(1.05); }
-    .focus-ring:focus-visible{ outline:2px solid #2563eb; outline-offset:2px; }
-
-    .no-scrollbar{ scrollbar-width: none; }
-    .no-scrollbar::-webkit-scrollbar{ display:none; }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -120,35 +102,6 @@
     </div></div></div>
   <script>
   
-  const POSTS = [
-      {
-        id: "p1",
-        user: "Pim",
-        avatar: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=256&auto=format&fit=crop",
-        text: "วันสบายๆ ที่ #ปทุมธานี แวะ #ตลาดวัดศาลเจ้า อิ่มมาก 🥰 #local_food #photo_spot",
-        media: { type:"image", src:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" },
-        ratio: "4/5", likes: 12
-      },
-      {
-        id: "p2",
-        user: "Non",
-        avatar: "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?q=80&w=256&auto=format&fit=crop",
-        text: "เล่นสุดมันที่ #dreamworld #theme_park #family",
-        media: { type:"video", src:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" },
-        ratio: "4/5", likes: 7
-      }
-    ];
-
-    /* ===== Places (เลือก/เพิ่มสถานที่) ===== */
-    const PLACES = [
-      { id:"pl_dreamworld", name:"ดรีมเวิลด์", province:"ปทุมธานี", category:"สวนสนุก", openingHours:"10:00–17:00",
-        tags:["ครอบครัว","theme_park","เล่นเครื่องเล่น"], photo:"https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1200&auto=format&fit=crop" },
-      { id:"pl_talad_wat_sanjao", name:"ตลาดวัดศาลเจ้า", province:"ปทุมธานี", category:"ตลาด/ของกิน", openingHours:"10:00–19:00",
-        tags:["local_food","street_food","ถ่ายรูป"], photo:"https://images.unsplash.com/photo-1498654896293-37aacf113fd9?q=80&w=1200&auto=format&fit=crop" },
-      { id:"pl_river_spot", name:"ริมน้ำเจ้าพระยา (รังสิต-ปทุม)", province:"ปทุมธานี", category:"ธรรมชาติ/วิว", openingHours:"06:00–19:00",
-        tags:["วิวสวย","เดินเล่น","photo_spot"], photo:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" }
-    ];
-
     const currentUser = { id:"u_me", name:"แทมมี่", handle:"@tammy", level:"Explorer", points:520, badges:["Verified Explorer"] };
     const places = [
       { id:"p_khaotao", name:"อ่างเก็บน้ำเขาเต่า", province:"ประจวบคีรีขันธ์", category:"ธรรมชาติ", lat:12.5032, lng:99.9886, openingHours:"06:00–18:30", tags:["วิวสวย","ถ่ายรูป","พระอาทิตย์ตก"], rating:4.8, crowd:"ปานกลาง", photos:["https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop"] },
